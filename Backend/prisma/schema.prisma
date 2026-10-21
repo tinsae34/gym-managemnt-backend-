@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MembershipStatus {
+  ACTIVE
+  EXPIRED
+  FROZEN
+}
+
+enum PaymentMethod {
+  CASH
+  DIGITAL
+}
+
+model Member {
+  id          String           @id @default(uuid())
+  fullName    String
+  phoneNumber String           @unique
+  status      MembershipStatus @default(EXPIRED)
+  startDate   DateTime         @default(now())
+  expiryDate  DateTime
+  qrCodeToken String           @unique
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  payments Payment[]
+  checkIns CheckIn[]
+
+  @@index([phoneNumber])
+  @@index([qrCodeToken])
+  @@index([status])
+  @@map("members")
+}
+
+model Payment {
+  id             String        @id @default(uuid())
+  memberId       String
+  amount         Decimal       @db.Decimal(10, 2)
+  paymentMethod  PaymentMethod
+  transactionRef String?
+  createdAt      DateTime      @default(now())
+
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@index([memberId])
+  @@map("payments")
+}
+
+model CheckIn {
+  id        String   @id @default(uuid())
+  memberId  String
+  createdAt DateTime @default(now())
+
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@index([memberId])
+  @@index([createdAt])
+  @@map("check_ins")
+}

@@ -11,7 +11,7 @@ export const createMember = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { fullName, phoneNumber } = req.body;
+    const { fullName, phoneNumber, telegramId } = req.body;
 
     if (!fullName || typeof fullName !== 'string' || !fullName.trim()) {
       throw new AppError('Full name is required.', 400);
@@ -41,6 +41,7 @@ export const createMember = async (
       data: {
         fullName: trimmedName,
         phoneNumber: trimmedPhone,
+        telegramId: telegramId?.trim() || undefined,
         status: MembershipStatus.ACTIVE,
         startDate: now,
         expiryDate: expiryDate,
@@ -97,13 +98,14 @@ export const searchMembers = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { phoneNumber, qrCodeToken, query } = req.query;
+    const { phoneNumber, qrCodeToken, telegramId, query } = req.query;
 
     const phone = (phoneNumber as string)?.trim() || (query as string)?.trim();
     const qrCode = (qrCodeToken as string)?.trim() || (query as string)?.trim();
+    const tgId = (telegramId as string)?.trim();
 
-    if (!phone && !qrCode) {
-      throw new AppError('Please provide a phoneNumber, qrCodeToken, or query parameter to search.', 400);
+    if (!phone && !qrCode && !tgId) {
+      throw new AppError('Please provide a phoneNumber, qrCodeToken, telegramId, or query parameter to search.', 400);
     }
 
     const member = await prisma.member.findFirst({
@@ -111,6 +113,7 @@ export const searchMembers = async (
         OR: [
           ...(phone ? [{ phoneNumber: phone }] : []),
           ...(qrCode ? [{ qrCodeToken: qrCode }] : []),
+          ...(tgId ? [{ telegramId: tgId }] : []),
         ],
       },
       include: {

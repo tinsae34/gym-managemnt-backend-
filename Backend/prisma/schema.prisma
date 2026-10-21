@@ -22,6 +22,7 @@ model Member {
   id          String           @id @default(uuid())
   fullName    String
   phoneNumber String           @unique
+  telegramId  String?          @unique
   status      MembershipStatus @default(EXPIRED)
   startDate   DateTime         @default(now())
   expiryDate  DateTime
@@ -33,6 +34,7 @@ model Member {
   checkIns CheckIn[]
 
   @@index([phoneNumber])
+  @@index([telegramId])
   @@index([qrCodeToken])
   @@index([status])
   @@map("members")

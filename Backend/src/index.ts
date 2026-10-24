@@ -26,6 +26,8 @@ app.get('/health', (_req: Request, res: Response) => {
 
 // Mount Functional API Routes
 app.use('/api', apiRoutes);
+app.use('/', apiRoutes);
+
 
 // Catch 404 routes
 app.use((req: Request, res: Response) => {

@@ -55,6 +55,38 @@ export const createMember = async (
   }
 };
 
+export const getMemberById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+
+    const member = await prisma.member.findUnique({
+      where: { id },
+      include: {
+        payments: {
+          orderBy: { createdAt: 'desc' },
+          take: 5,
+        },
+        checkIns: {
+          orderBy: { createdAt: 'desc' },
+          take: 5,
+        },
+      },
+    });
+
+    if (!member) {
+      throw new AppError('Member not found.', 404);
+    }
+
+    sendSuccess(res, member, 'Member found.');
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getMembers = async (
   req: Request,
   res: Response,

@@ -7,16 +7,32 @@ export default {
     theme: {
         extend: {
             colors: {
-                telegram: {
-                    bg: 'var(--tg-theme-bg-color, #0f172a)',
-                    text: 'var(--tg-theme-text-color, #f1f5f9)',
-                    hint: 'var(--tg-theme-hint-color, #94a3b8)',
-                    link: 'var(--tg-theme-link-color, #3b82f6)',
-                    button: 'var(--tg-theme-button-color, #001B74)',
-                    buttonText: 'var(--tg-theme-button-text-color, #ffffff)',
-                    secondary: 'var(--tg-theme-secondary-bg-color, #1e293b)',
-                }
-            }
+                background: '#FFFFFF',
+                surface: '#F5F5F5',
+                border: '#E0E0E0',
+                text: {
+                    primary: '#000000',
+                    secondary: '#666666',
+                    disabled: '#999999',
+                },
+                status: {
+                    active: '#000000',
+                    expired: '#666666',
+                    frozen: '#999999',
+                },
+                accent: '#000000',
+                hover: '#F0F0F0',
+            },
+            borderRadius: {
+                'none': '0px',
+                'sm': '2px',
+                'md': '4px',
+                'lg': '8px',
+            },
+            boxShadow: {
+                'sm': '0 1px 2px rgba(0, 0, 0, 0.05)',
+                'md': '0 2px 4px rgba(0, 0, 0, 0.1)',
+            },
         },
     },
     plugins: [],

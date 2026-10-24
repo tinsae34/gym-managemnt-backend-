@@ -4,27 +4,24 @@ interface StatusBadgeProps {
 }
 
 const StatusBadge = ({ status, daysRemaining }: StatusBadgeProps) => {
-    const getStatusStyles = () => {
+    const getStatusClasses = () => {
         switch (status) {
             case 'ACTIVE':
-                return 'bg-green-500/20 text-green-400 border-green-500/30';
+                return 'bg-black text-white';
             case 'EXPIRED':
-                return 'bg-red-500/20 text-red-400 border-red-500/30';
+                return 'bg-gray-400 text-white';
             case 'FROZEN':
-                return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+                return 'bg-gray-600 text-white';
             default:
-                return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
+                return 'bg-gray-300 text-black';
         }
     };
 
     return (
-        <div className={`inline-flex items-center px-3 py-1.5 rounded-full border ${getStatusStyles()}`}>
-            <span className="w-2 h-2 rounded-full bg-current mr-2 animate-pulse"></span>
-            <span className="text-sm font-medium">
-                {status}
-                {status === 'ACTIVE' && daysRemaining !== undefined && ` • ${daysRemaining}d`}
-            </span>
-        </div>
+        <span className={`inline-block px-3 py-1 text-xs font-medium uppercase tracking-wide ${getStatusClasses()}`}>
+            {status}
+            {status === 'ACTIVE' && daysRemaining !== undefined && ` • ${daysRemaining}d`}
+        </span>
     );
 };
 

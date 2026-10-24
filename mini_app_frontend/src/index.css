@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-color: #E8E8E8;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  p { color: #505050; line-height: 1.5; }
+
+  input, textarea, select {
+    font-family: inherit;
+    color: #000000;
+  }
+
+  /* Scrollbar — minimal */
+  ::-webkit-scrollbar        { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: #D0D0D0; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #A0A0A0; }
+}
+
+@layer components {
+  /* ── Buttons ───────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-black text-white text-sm font-medium transition-colors duration-150 hover:bg-gray-900 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-white text-black text-sm font-medium border border-black transition-colors duration-150 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-transparent text-black text-sm font-medium transition-colors duration-150 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* ── Cards ─────────────────────────────────────────────────── */
+  .card {
+    @apply bg-white border border-gray-200;
+  }
+
+  .card-strong {
+    @apply bg-white border-2 border-black;
+  }
+
+  /* ── Inputs ─────────────────────────────────────────────────── */
+  .input {
+    @apply w-full px-3 py-2 bg-white border border-gray-300 text-black placeholder-gray-400 focus:outline-none focus:border-black transition-colors duration-150;
+  }
+
+  /* ── Labels ─────────────────────────────────────────────────── */
+  .label       { @apply text-sm font-medium text-black; }
+  .label-muted { @apply text-sm text-gray-500; }
+
+  /* ── Dividers ───────────────────────────────────────────────── */
+  .divider        { @apply border-t border-gray-200; }
+  .divider-strong { @apply border-t-2 border-black; }
+
+  /* ── Status badges ──────────────────────────────────────────── */
+  .badge-active  { @apply inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-black text-white; }
+  .badge-expired { @apply inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-gray-200 text-gray-600; }
+  .badge-frozen  { @apply inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-gray-500 text-white; }
+
+  /* ── Animations ─────────────────────────────────────────────── */
+  .animate-fade-in   { animation: fadeIn 150ms ease forwards; }
+  .animate-slide-up  { animation: slideUp 200ms ease forwards; }
+
+  @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+}

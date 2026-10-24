@@ -78,12 +78,12 @@ function App() {
 
     if (!member) {
         return (
-            <div className="flex items-center justify-center min-h-screen p-6 bg-slate-900">
+            <div className="flex items-center justify-center min-h-screen p-6 bg-white">
                 <div className="text-center">
-                    <p className="text-slate-300 mb-4">Unable to load membership data</p>
+                    <p className="text-black mb-4">Unable to load membership data</p>
                     <button
                         onClick={checkMembership}
-                        className="px-6 py-2 bg-blue-600 text-white rounded-lg"
+                        className="px-6 py-2 bg-black text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
                     >
                         Retry
                     </button>
@@ -93,18 +93,18 @@ function App() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-900">
+        <div className="min-h-screen bg-white">
             {currentScreen === 'home' && (
                 <HomeScreen member={member} onMemberUpdate={handleMemberUpdate} />
             )}
             {currentScreen === 'guide' && <GuideScreen />}
 
             {/* Bottom Navigation */}
-            <nav className="fixed bottom-0 left-0 right-0 bg-slate-800 border-t border-slate-700 safe-area-bottom">
+            <nav className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-black safe-area-bottom">
                 <div className="flex items-center justify-around h-16">
                     <button
                         onClick={() => setCurrentScreen('home')}
-                        className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${currentScreen === 'home' ? 'text-blue-500' : 'text-slate-400'
+                        className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${currentScreen === 'home' ? 'text-black font-semibold' : 'text-gray-400'
                             }`}
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ function App() {
                     </button>
                     <button
                         onClick={() => setCurrentScreen('guide')}
-                        className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${currentScreen === 'guide' ? 'text-blue-500' : 'text-slate-400'
+                        className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${currentScreen === 'guide' ? 'text-black font-semibold' : 'text-gray-400'
                             }`}
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

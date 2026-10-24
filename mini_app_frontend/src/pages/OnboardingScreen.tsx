@@ -63,27 +63,27 @@ const OnboardingScreen = ({ onComplete }: OnboardingScreenProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6">
+        <div className="min-h-screen bg-white flex items-center justify-center p-6">
             <div className="max-w-md w-full">
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-500/20 rounded-full mb-4">
-                        <UserPlus className="w-10 h-10 text-blue-400" />
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-black rounded-full mb-4">
+                        <UserPlus className="w-10 h-10 text-white" />
                     </div>
-                    <h1 className="text-3xl font-bold text-white mb-2">Welcome to the Gym!</h1>
-                    <p className="text-slate-400">
+                    <h1 className="text-3xl font-bold text-black mb-2">Welcome to the Gym!</h1>
+                    <p className="text-gray-600">
                         Hi {telegramUser?.first_name}! Let's set up your membership
                     </p>
                 </div>
 
-                <div className="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+                <div className="bg-white rounded-2xl p-6 border-2 border-black">
                     {errorMessage && (
-                        <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
-                            <p className="text-red-400 text-sm">{errorMessage}</p>
+                        <div className="mb-4 p-3 bg-white border-2 border-black rounded-lg">
+                            <p className="text-black text-sm">{errorMessage}</p>
                         </div>
                     )}
 
                     <div className="mb-6">
-                        <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-2">
+                        <label htmlFor="phone" className="block text-sm font-medium text-black mb-2">
                             Phone Number
                         </label>
                         <input
@@ -92,10 +92,10 @@ const OnboardingScreen = ({ onComplete }: OnboardingScreenProps) => {
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
                             placeholder="+251912345678"
-                            className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:border-black"
                             disabled={isLoading}
                         />
-                        <p className="mt-2 text-xs text-slate-500">
+                        <p className="mt-2 text-xs text-gray-500">
                             Enter the phone number you registered with
                         </p>
                     </div>
@@ -103,7 +103,7 @@ const OnboardingScreen = ({ onComplete }: OnboardingScreenProps) => {
                     <button
                         onClick={handleRegister}
                         disabled={isLoading}
-                        className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center"
+                        className="w-full py-3 bg-black hover:bg-gray-900 disabled:bg-gray-300 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center"
                     >
                         {isLoading ? (
                             <>
@@ -117,7 +117,7 @@ const OnboardingScreen = ({ onComplete }: OnboardingScreenProps) => {
                 </div>
 
                 <div className="mt-6 text-center">
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-gray-500">
                         By continuing, you agree to our terms of service
                     </p>
                 </div>

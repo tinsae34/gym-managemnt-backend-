@@ -7,16 +7,16 @@ interface QRDisplayProps {
 
 const QRDisplay = ({ token, memberName }: QRDisplayProps) => {
     return (
-        <div className="bg-white p-6 rounded-2xl shadow-2xl">
+        <div className="bg-white border-2 border-black p-6">
             <div className="text-center mb-4">
-                <h3 className="text-lg font-semibold text-slate-900">{memberName}</h3>
-                <p className="text-xs text-slate-500 mt-1">Scan at reception</p>
+                <h3 className="text-base font-bold text-black">{memberName}</h3>
+                <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide">Scan at reception</p>
             </div>
 
             <div className="flex justify-center">
                 <QRCodeSVG
                     value={token}
-                    size={240}
+                    size={220}
                     level="H"
                     includeMargin={true}
                     bgColor="#ffffff"
@@ -24,11 +24,12 @@ const QRDisplay = ({ token, memberName }: QRDisplayProps) => {
                 />
             </div>
 
-            <div className="mt-4 text-center">
-                <p className="text-xs text-slate-400 font-mono break-all">{token}</p>
+            <div className="mt-4 text-center border-t border-gray-200 pt-3">
+                <p className="text-xs text-gray-400 font-mono break-all">{token}</p>
             </div>
         </div>
     );
 };
 
 export default QRDisplay;
+
